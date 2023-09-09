@@ -14,7 +14,8 @@ public class Ex2 {
         System.out.print("Enter the number of moons of the planet: ");
         numMoons = input.nextInt();
 
-        System.out.print("\n\n\t\t+++++++++++++++++++++++++++\n"+
+        String line = "+".repeat(27);
+        System.out.print("\n\n\t\t"+line+"\n"+
                 "\t\t\t\tPlanet Data\n\t\t"+
                 "+++++++++++++++++++++++++++\n\n");
 
