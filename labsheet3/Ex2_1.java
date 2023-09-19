@@ -5,10 +5,8 @@ public class Ex2_1 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        // Read in the sentence from the user
         System.out.print("Enter a sentence terminated with a full-stop or exclamation mark: ");
         String inputSentence = input.nextLine();
-        //input.close();
 
         // Remove the sentinel value and convert to lowercase for case-insensitive comparison
         inputSentence = inputSentence.replace(".", "").replace("!", "").toLowerCase();
