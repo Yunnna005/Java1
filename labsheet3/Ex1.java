@@ -42,7 +42,7 @@ public class Ex1 {
         }
         else {
             result1 = avgtemp/totalConversions;
-            result2 = (tempPercentageMore20*100)/totalConversions;
+            result2 = (tempPercentageMore20*totalConversions)/100;
             String line = "=".repeat(27);
             System.out.println("\n\n"+line+"\n\tProgram Result\n"+line+"\n");
             System.out.println("Total conversions performed: "+totalConversions+
