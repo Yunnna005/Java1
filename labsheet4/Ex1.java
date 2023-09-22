@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Ex1 {
     public static void main(String[] args) {
 
-        // переделать калечная программа!
+        // Right code -> Ex1_4
 
         Scanner input = new Scanner(System.in);
 

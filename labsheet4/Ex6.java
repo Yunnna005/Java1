@@ -4,9 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Ex6 {
+
+    //Right code -> Ex6_4
     public static void main(String[] args) {
         String studentName,Tnumber, course, avgMarkString;
-        //double avgMark;
         String studentNamesList = "", TnumbersList = "", coursesList = "", avgMarkList = "";
 
         for (int i=1; i<6; i++){
