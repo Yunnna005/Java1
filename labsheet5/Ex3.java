@@ -8,6 +8,7 @@ public class Ex3 {
         String choice;
         int gamePlayed = 0, playerWins = 0, computerWins = 0, draws = 0;
 
+
         choice = JOptionPane.showInputDialog("Would you like to play a game of roll the dice? (yes or no)");
         switch (choice){
             case "no":
@@ -30,6 +31,13 @@ public class Ex3 {
                     JOptionPane.showMessageDialog(null, "Game played: "+i+
                             "\nComputer Wins: "+computerWins+"\nPlayer Wins: "+playerWins+
                             "\nDraws:  "+draws);
+                }
+                if (playerWins > computerWins){
+                    JOptionPane.showMessageDialog(null, "The player won", "Winner", JOptionPane.INFORMATION_MESSAGE);
+                } else if (computerWins>playerWins) {
+                    JOptionPane.showMessageDialog(null, "The computer won", "Winner", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(null, "The player and computer won", "Winner", JOptionPane.INFORMATION_MESSAGE);
                 }
         }
     }
