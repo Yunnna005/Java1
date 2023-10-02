@@ -2,7 +2,7 @@ package labsheet4;
 
 import javax.swing.*;
 
-public class GUIinputOutput {
+public class GUIinputOutput {//
     public static void main(String[] args) {
         String item, quantityAsString, priceAsString;
         int quantity;

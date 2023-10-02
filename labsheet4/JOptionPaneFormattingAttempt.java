@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class JOptionPaneFormattingAttempt { // doesn't work properly
-    public static void main(String[] args) {
+    public static void main(String[] args) {//
 
         int i = 1;
         double squareRoot, cubeRoot;

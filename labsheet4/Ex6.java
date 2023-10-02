@@ -3,7 +3,7 @@ package labsheet4;
 import javax.swing.*;
 import java.awt.*;
 
-public class Ex6 {
+public class Ex6 {//
 
     //Right code -> Ex6_4
     public static void main(String[] args) {
