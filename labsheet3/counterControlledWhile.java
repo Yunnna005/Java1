@@ -2,7 +2,7 @@ package labsheet3;
 
 import java.util.Scanner;
 
-public class counterControlledWhile {
+public class counterControlledWhile {//
     public static void main(String[] args) {
         String name, nameOver20 = "", nameStartingWithA = "";
         int totalLength=0, count=0;

@@ -1,6 +1,6 @@
 package labsheet3;
 
-public class Ex6 {
+public class Ex6 {//
     public static void main(String[] args) { //idea how it should work
         double balance =100000;
         double rate;

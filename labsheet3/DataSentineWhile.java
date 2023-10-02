@@ -2,7 +2,7 @@ package labsheet3;
 
 import java.util.Scanner;
 
-public class DataSentineWhile {
+public class DataSentineWhile {//
     public static void main(String[] args) {
         float height, totalHeight = 0;
         int numProcessed = 0;
