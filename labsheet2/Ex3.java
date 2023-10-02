@@ -2,7 +2,7 @@ package labsheet2;
 
 import java.util.Scanner;
 
-public class Ex3 {
+public class Ex3 {//
     public static void main(String[] args) {
         final double G = 6.67428E-11;
         final double pi = 3.142;

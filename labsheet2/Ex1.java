@@ -3,7 +3,7 @@ package labsheet2;
 import java.util.Scanner;
 import java.lang.Math;
 
-public class Ex1 {
+public class Ex1 {//
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
