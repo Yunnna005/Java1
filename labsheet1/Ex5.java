@@ -3,7 +3,7 @@ package labsheet1;
 import java.util.Scanner;
 
 public class Ex5 {
-    public static void main(String[] args) {
+    public static void main(String[] args) {//
         Scanner input = new Scanner(System.in);
         double g = 9.81f;
         double me;

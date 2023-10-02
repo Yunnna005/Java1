@@ -3,7 +3,7 @@ package labsheet1;
 import javax.lang.model.element.NestingKind;
 import java.io.StringReader;
 
-public class FormatingVariables {
+public class FormatingVariables {//
     public static void main(String[] args) {
         String country1 = "Ireland";
         int pop1 = 7026636;

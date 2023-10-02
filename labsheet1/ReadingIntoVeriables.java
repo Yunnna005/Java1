@@ -2,7 +2,7 @@ package labsheet1;
 
 import java.util.Scanner;
 public class ReadingIntoVeriables {
-    public static void main(String[] args) {
+    public static void main(String[] args) {//
 
         String name;
         int age;

@@ -1,6 +1,6 @@
 package labsheet1;
 
-public class LongTextMessages {
+public class LongTextMessages {//
     public static void main(String[] args) {
         System.out.println("Macavity’s a Mystery Cat: he’s called " +
                 "the Hidden Paw \n"+

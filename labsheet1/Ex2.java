@@ -2,7 +2,7 @@ package labsheet1;
 
 import java.util.Scanner;
 public class Ex2 {
-    public static void main(String[] args) {
+    public static void main(String[] args) {//
         String namePlanet;
         int numMoons;
         float speedOrb = 13.07367f;

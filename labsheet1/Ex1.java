@@ -2,7 +2,7 @@ package labsheet1;
 
 import java.util.Scanner;
 public class Ex1 {
-    public static void main(String[] args) {
+    public static void main(String[] args) {//
 
         String type1, type2;
         int num1, num2;
