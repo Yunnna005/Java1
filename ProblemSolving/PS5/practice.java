@@ -6,20 +6,44 @@ import java.awt.*;
 public class practice {
     public static void main(String[] args) {
         String[] grid = new String[81];
-
         String input, valid;
+        int round = 36;
+
+        int[] solution = {4, 3, 5, 2, 6, 9, 7, 8, 1,
+                6, 8, 2, 5, 7, 1, 4, 9, 3,
+                1, 9, 7, 8, 3, 4, 5, 6, 2,
+                8, 2, 6, 1, 9, 5, 3, 4, 7,
+                3, 7, 4, 6, 8, 2, 9, 1, 5,
+                9, 5, 1, 7, 4, 3, 6, 2, 8,
+                5, 1, 9, 3, 2, 6, 8, 7, 4,
+                2, 4, 8, 9, 5, 7, 1, 3, 6,
+                7, 6, 3, 4, 1, 8, 2, 5, 9 };
 
         generateInitialGrid(grid);
-        displayGrid(grid);
 
         do {
-            input = JOptionPane.showInputDialog("Enter yoour guess CR N: "+
-                    "\n\n\nC is the column\nR is the row\n N is the number");
-            valid = isValid(input);
-        }
+            displayGrid(grid);
+            input = JOptionPane.showInputDialog("Enter your guess CR N\n\n\n"+
+                    "C - column\nR - row\nN - number\n");
+            valid = isValid(input, grid, solution);
+
+            while(!(valid.equals("valid"))){
+                JOptionPane.showInputDialog("Invalid input! " + valid +
+                        "\n\n\nPlease enter your guess in the form CR N where\n\n\n" +
+                        "C is the column value, from A to I" +
+                        "\nR is the row value, from 1 to 9" +
+                        "\nN is the number value, from 1 to 9\n");
+                valid = isValid(input, grid, solution);
+
+
+            }
+
+            round ++;
+        }while (round <81);
+
     }
     public static void generateInitialGrid(String[] grid){
-        for (int i = 0; i<grid.length; i++){
+        for (int i =0; i< grid.length; i++){
             grid[i] = "\u2B1C";
         }
         grid[3] = "2"; grid[4] = "6"; grid[6] = "7"; grid[8] = "1";
@@ -35,40 +59,51 @@ public class practice {
     public static void displayGrid(String[] grid){
         JTextArea textArea = new JTextArea();
         textArea.setFont(new Font("Courier New", Font.BOLD, 20));
-
-        String textAreaText = "";
+        String textAreaData = "";
         for (int i = 0; i<grid.length; i++){
-            textAreaText += String.format("%-3s",grid[i]);
-
+            textAreaData += String.format("%-3s", grid[i]);
             if ((i+1)%9 == 0){
-                textAreaText += "\n\n";
+                textAreaData += "\n\n";
             }
         }
-        textArea.setText(textAreaText);
-        JOptionPane.showMessageDialog(null,textArea, "Sudoku Game", JOptionPane.INFORMATION_MESSAGE);
+        textArea.setText(textAreaData);
+        JOptionPane.showMessageDialog(null, textArea, "Sudoku Game", JOptionPane.INFORMATION_MESSAGE);
     }
-    public static String isValid(String input){
-        if (!(input.length() == 4 || input.isBlank())){
+    public static String isValid(String input, String[] grid, int[] solution){
+        if (input.length() != 4 || input == null){
             return "The input must have exactly 4 characters";
         }
 
-        char lowerCaseInput = Character.toLowerCase(input.charAt(0));
-        if (lowerCaseInput < 'a' || lowerCaseInput > 'i'){
+        char column = Character.toLowerCase(input.charAt(0));
+        if (column<'a'||column>'i'){
             return "The column value must be between A and I inclusive";
         }
 
-        if (input.charAt(1)<1||input.charAt(1)>9){
+        if (input.charAt(1) <'1' || input.charAt(1) >'9'){
             return "The row value must be between 1 and 9 inclusive";
         }
 
-        if (input.charAt(2) == ' '){
+        if (input.charAt(2) != ' '){
             return "The 3rd character must be a space";
         }
 
-        if (input.charAt(3)<1 || input.charAt(3)>9){
+        int number = Character.getNumericValue(input.charAt(3));
+        if (input.charAt(3)<'1' || input.charAt(3)>'9'){
             return "The number value must be between 1 and 9 inclusive";
         }
 
+        int columnInt = column-96;
+        int row = Character.getNumericValue(input.charAt(1));
+//        int index = (row-1)*9+columnInt;
+        int index = (row-1)*9+columnInt;
+        if (!(grid[index-1].equals("\u2B1C"))){
+            return "The grid already has a number in this cell";
+        }
 
+        if (solution[index-1] != number){
+            return "The number you entered is incorrect";
+        }
+        grid[index - 1] = String.valueOf(number);
+        return "valid";
     }
 }
