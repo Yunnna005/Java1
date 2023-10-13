@@ -13,12 +13,23 @@ public class Ex2 {
         displayResults(names, GPAs);
 
         JOptionPane.showMessageDialog(null,"The average GPA is "+ averageGPA(GPAs),"Average GPA",JOptionPane.INFORMATION_MESSAGE);
-        JOptionPane.showMessageDialog(null, "The standard deviation of the GPAs is "+standardDeviationGPA(GPAs), "Standart deviation",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "The standard deviation of the GPAs is "+String.format("%.3f",standardDeviationGPA(GPAs)), "Standart deviation",JOptionPane.INFORMATION_MESSAGE);
     }
 
-    private static void standardDeviationGPA(double[] gpAs) {
-        //formula
-        double f;
+    private static double standardDeviationGPA(double[] gpAs) {
+        double sum = 0;
+        for (double i : gpAs){
+            sum += i;
+        }
+
+        int length = gpAs.length;
+        double mean = sum/length;
+
+        double standartD = 0;
+        for (double i:gpAs){
+            standartD += Math.pow(i-mean,2);
+        }
+        return Math.sqrt(standartD/length);
     }
 
     private static int averageGPA(double[] gpAs) {
