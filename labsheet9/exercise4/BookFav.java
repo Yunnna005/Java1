@@ -1,18 +1,18 @@
-package labsheet9.exercise3;
+package labsheet9.exercise4;
 
-public class Book {
+public class BookFav {
     private String Title, ISBN;
     private double Price;
     private int numberOfPages;
 
-    public Book(){
+    public BookFav(){
         Title = "Title Not Available";
         Price = 0.0;
         ISBN = "ISBN Not Available";
         numberOfPages = 0;
     }
 
-    public Book(String title, double price, String isbn, int numberOfPages){
+    public BookFav(String title, double price, String isbn, int numberOfPages){
         this.Title = title;
         this.Price = price;
         this.ISBN = isbn;
@@ -42,7 +42,7 @@ public class Book {
     }
 
     public String toString(){
-        return "Title: "+GetTitle()+"\nPrice: "+GetPrice()+"\nISBN: "+GetISBN()
-                +"\nNumber of pages: "+GetNumberOfPages();
+        String data = String.format("%-30s%-10f%-15s%d", GetTitle(), GetPrice(), GetISBN(), GetNumberOfPages());
+        return data;
     }
 }
