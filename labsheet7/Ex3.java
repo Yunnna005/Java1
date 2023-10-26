@@ -14,7 +14,7 @@ public class Ex3 {
         selectionSort(tNumber, courseNames);
 
         seekName = JOptionPane.showInputDialog("Enter the t-number of the student you seek");
-        found = binarySearch();
+        //found = binarySearch();
     }
 
     private static void selectionSort(String[] tNumber, String[] courseNames) {
