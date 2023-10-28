@@ -1,9 +1,8 @@
-package labsheet9.exercise4;
-
-import labsheet9.exercise3.Book;
+package labsheet10.exercise1;
 
 import javax.swing.*;
 import java.awt.*;
+import labsheet8.exercise1.Computer;
 
 public class TestBook {
     public static void main(String[] args) {

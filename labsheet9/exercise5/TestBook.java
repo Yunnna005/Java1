@@ -1,6 +1,4 @@
-package labsheet9.exercise4;
-
-import labsheet9.exercise3.Book;
+package labsheet9.exercise5;
 
 import javax.swing.*;
 import java.awt.*;
