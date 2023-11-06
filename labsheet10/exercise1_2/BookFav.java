@@ -1,4 +1,4 @@
-package labsheet10.exercise1;
+package labsheet10.exercise1_2;
 
 public class BookFav {
     private String Title, ISBN;

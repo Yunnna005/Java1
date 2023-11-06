@@ -1,6 +1,6 @@
 package labsheet8.exercise1;
 
-class Computer {
+public class Computer {
     private String manufacturer;
     private String type;
     private double speed;

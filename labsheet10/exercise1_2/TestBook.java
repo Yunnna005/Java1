@@ -1,4 +1,4 @@
-package labsheet10.exercise1;
+package labsheet10.exercise1_2;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,6 +9,11 @@ public class TestBook {
         String title, ISBN;
         double price;
         int pages;
+
+
+        Computer c1 = new Computer();
+
+        System.out.println(c1.getManufacturer());
 
         TextArea textArea = new TextArea();
         textArea.setFont(new Font("monospaced",Font.PLAIN,15));
