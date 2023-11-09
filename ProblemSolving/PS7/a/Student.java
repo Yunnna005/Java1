@@ -32,10 +32,10 @@ public class Student {
     public String getDepartment() {return Department;}
     public String[] getModules() {return modules;}
 
-    public static int getCount() {return count++;}
+    public static int getCount() {return count;}
 
     public String toString(){
-        return "\n\nStudent "+getCount()+"\n\nName: "+getName()+"\nID: "+getId()+
-                "\nCollege: "+getCollege()+"\nDepartment: "+getDepartment()+"\nModules: "+ Arrays.toString(getModules());
+        return "\n\nName: "+getName()+"\nID: "+getId()+ "\nCollege: "+getCollege()+"\nDepartment: "+
+                getDepartment()+"\nModules: "+ Arrays.toString(getModules());
     }
 }
