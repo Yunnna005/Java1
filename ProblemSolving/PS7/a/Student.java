@@ -1,17 +1,18 @@
 package PS7.a;
 
+import java.util.Arrays;
+
 public class Student {
     private String name;
     private int id;
     private String college;
     private String Department;
     private String[] modules;
-    private static int count = 0;
+    private static int count = 1;
 
-    public Student(String name, String college, String[] modules){
+    public Student(String name, String department, String[] modules){
         setName(name);
-        setId();
-        setCollege(college);
+        setDepartment(department);
         setModules(modules);
     }
 
@@ -35,6 +36,6 @@ public class Student {
 
     public String toString(){
         return "\n\nStudent "+getCount()+"\n\nName: "+getName()+"\nID: "+getId()+
-                "\nCollege: "+getCollege()+"\nDepartment: "+getDepartment()+"\nModules: "+getModules().toString();
+                "\nCollege: "+getCollege()+"\nDepartment: "+getDepartment()+"\nModules: "+ Arrays.toString(getModules());
     }
 }
