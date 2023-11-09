@@ -1,6 +1,5 @@
 package PS8.a;
 
-import java.sql.Time;
 
 public class Class {
     private String name;
