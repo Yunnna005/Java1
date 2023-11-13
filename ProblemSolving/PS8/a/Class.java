@@ -19,14 +19,18 @@ public class Class {
     public void setName(String name){this.name=name;}
     public void setLocation(String location){this.location=location;}
     public void setEnrollment(int enrollment){this.enrollment=enrollment;}
-    public void setStartTime(Time startTime) {this.startTime = startTime;}
-    public void setFinishTime(Time finishTime) {this.finishTime = finishTime;}
+    public void setStartTime(Time startTime) {
+        this.startTime = new Time(startTime.getHour(),startTime.getMinute(),startTime.getSecond());
+    }
+    public void setFinishTime(Time finishTime) {
+        this.finishTime = new Time(finishTime.getHour(),finishTime.getMinute(),finishTime.getSecond());
+    }
 
-    public String getName() {return name;}
+    public String getName() {return name; }
     public String getLocation() {return location;}
     public int getEnrollment() {return enrollment;}
-    public Time getStartTime() {return startTime;}
-    public Time getFinishTime() {return finishTime;}
+    public Time getStartTime() {return new Time(startTime.getHour(),startTime.getMinute(),startTime.getSecond());}
+    public Time getFinishTime() {return new Time(finishTime.getHour(),finishTime.getMinute(),finishTime.getSecond());}
 
     public String toString(){
         return "\nName: "+getName()+"\nLocation: "+getLocation()+"\nEnrollment: "+getEnrollment()+"\nStart time: "+
