@@ -20,5 +20,18 @@ public class TestComputer {
         allComputers[1] = pc2;
         allComputers[2] = pc3;
 
+        for (int i = 0; i< allComputers.length; i++){
+            System.out.println("\n\nComputer "+(i+1)+"\n\n"+allComputers[i]);
+        }
+
+        System.out.println("\n\nNow displaying a list of any Computer objects whose case model includes the word \"Optiplex\" \n\n");
+        String list = "";
+
+        for(int i = 0; i< allComputers.length; i++){
+            if (allComputers[i].getComputerCase().getModel().toLowerCase().contains("optiplex"));
+            list += allComputers[i]+"\n\n";
+        }
+
+        System.out.println("\n\n"+list);
     }
 }
