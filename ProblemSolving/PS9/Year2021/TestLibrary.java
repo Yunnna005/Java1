@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class TestLibrary {
     public static void main(String[] args) {
-        String text = "";
+        String text = "", seektext = "";
         Author[] authorList = new Author[10];
 
         Author a1 = new Author("Harvey", "Deitel");
@@ -42,6 +42,23 @@ public class TestLibrary {
 
         JOptionPane.showMessageDialog(null, text, "Library Details",JOptionPane.INFORMATION_MESSAGE);
 
+        String seekTitle = JOptionPane.showInputDialog("Enter the title of the book you seek");
+        seektext = "The details of the book are as follow:\n\n";
 
+        seektext += l.findBook(seekTitle);
+
+        JOptionPane.showMessageDialog(null, seektext, "Book found", JOptionPane.INFORMATION_MESSAGE);
+
+        Book b6 = new Book("0131103628", "The C Programming Language", "Prentice Hall", new Author[]{a2,a9}, 3 );
+        Book b7 = new Book("0134997832", "A Tour Of C++", "Pearson", new Author[]{a10}, 5 );
+
+        bookList[5]=b6;
+        bookList[6]=b7;
+
+        l.addBook(b6);
+        l.addBook(b7);
+
+        JOptionPane.showMessageDialog(null, text, "Library Details",JOptionPane.INFORMATION_MESSAGE);
+        System.exit(0);
     }
 }
