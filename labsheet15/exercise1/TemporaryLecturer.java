@@ -30,8 +30,8 @@ public class TemporaryLecturer extends Lecturer{
         if (fullWorkYears>=3 && getHoursWorked()>1500){
             return 4;
         } else if (fullWorkYears>=3 && getHoursWorked()>1000) {
-            double num = getHoursWorked()*1.33;
-            return (int) num;
+            double num = (getHoursWorked()*1.33)/700;
+            return (int) Math.round(num);
         }else{
             return fullWorkYears;
         }
