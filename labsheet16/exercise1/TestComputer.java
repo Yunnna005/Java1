@@ -12,8 +12,8 @@ public class TestComputer {
 
         double totalPrice=0;
         Computer highestSpeedComputer;
-        List<Computer> exceed500List = new ArrayList<>();
-        Computer[] tabletTYpe = new Computer[6];
+        ArrayList<Computer> exceed500 = new ArrayList<>();
+        ArrayList<Computer> tabletType = new ArrayList<>();
 
         Computer c1 = new Computer();
         Computer c2 = new Computer("Dell","Laptop",3.25,16,550.99);
@@ -33,12 +33,12 @@ public class TestComputer {
             if(c.getSpeed()>highestSpeedComputer.getSpeed())
                 highestSpeedComputer = c;
 
-            if (c.getPrice()>500){
-                exceed500List.add(c);
+            if (c.getPrice() > 500) {
+                exceed500.add(c);
             }
 
-            if (Objects.equals(c.getType(), "Tablet")){
-                tabletTYpe = new Computer[]{c};
+            if (Objects.equals(c.getType(), "Tablet")) {
+                tabletType.add(c);
             }
             System.out.println(c);
         }
@@ -47,11 +47,14 @@ public class TestComputer {
                 "\nDetails of highest speed computer: " + highestSpeedComputer);
 
         System.out.println("\n\nList of computers whose price exceeds €500: \n");
-        for (Computer comp1:exceed500) System.out.println(comp1.toString());
+        for (Computer computer : exceed500) {
+            System.out.println(computer);
+        }
 
         System.out.println("\n\nList of computers that are tablets: \n");
-        for (Computer comp2:tabletTYpe) System.out.println(comp2.toString());
-
+        for (Computer tablet : tabletType) {
+            System.out.println(tablet);
+        }
 
         System.out.println("\n\n\n\nUpdated details of all Computers in the array \n\n");
         for (Computer c:allComputers) {
