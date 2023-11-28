@@ -7,15 +7,13 @@ an array-list is used for maintaining a collection of LineItem objects and
 a separate collection of Product objects. The driver is also testing out
 the functionality of the ArrayList class*/
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class TestArrayList{
     public static void main(String[] args) {
 
-        System.out.println("\n\nCreating two array-lists, one to maintain a collection of products,\n" +
-                "the other to maintain a collection of line-items ...\n");
-        //Create an array-list of LineItem objects
         ArrayList<LineItem> allLineItems = new ArrayList<LineItem>();
 
         // Create Products
@@ -35,7 +33,6 @@ public class TestArrayList{
         Product p14 = new Product(14, "Blue Marker", "This is a blue permanent marker");
         Product p15 = new Product(15, "Calculator", "This is a Casio scientific calculator");
 
-        //Create an array-list of Product objects
         ArrayList<Product> allProducts = new ArrayList<Product>(Arrays.asList(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15));
         // Create LineItem objects
 
@@ -47,81 +44,83 @@ public class TestArrayList{
         allLineItems.add(item2);
         allLineItems.add(item3);
 
-        System.out.println("There are " + allLineItems.size() + " line-items in its array");
-        System.out.println("There are " + allProducts.size() + " products in its array");
+        int input = Integer.parseInt(JOptionPane.showInputDialog("1.Add a Product\n2.Amend a Product\n3.Remove a Product\n4.View all Products\n5.Quit\n\nPlease enter your choice"));
+        if (!inputValidation(input)){
+            input = Integer.parseInt(JOptionPane.showInputDialog("1.Add a Product\n2.Amend a Product\n3.Remove a Product\n4.View all Products\n5.Quit\n\nPlease enter your choice"));
+        }else{
+            switch (input){
+                case 1:
+                    addProduct(allProducts);
+                case 2:
+                    amendProduct(allProducts);
+                case 3:
+                    removeProduct(allProducts);
+                case 4:
+                    viewProducts(allProducts);
+                case 5:
+                    //exit
+            }
+        }
+    }
 
-        System.out.println("\nDisplaying the state of all products ...\n");
-        for (Product p : allProducts)
-            if (p != null)
-                System.out.println(p);
+    private static boolean inputValidation(int num) {
+        if (num<1||num>5){
+            return false;
+        }else{
+            return true;
+        }
+    }
 
+    public static void addProduct(ArrayList<Product> allProducts){
+        int id = Integer.parseInt(JOptionPane.showInputDialog("Enter the product id"));
+        String name = JOptionPane.showInputDialog("Enter the product name");
+        String description = JOptionPane.showInputDialog("Enter the pr. desc.");
 
-        System.out.println("\n\nDisplaying the state of all line-items ...\n");
-        for (LineItem l : allLineItems)
-            if (l != null)
-                System.out.println(l);
-
-        System.out.println("\n\nNow removing the first line-item from its array-list...\n\n");
-        allLineItems.remove(0);
-
-        System.out.println("Displaying the state of all line-items ...\n");
-        for (LineItem l : allLineItems)
-            if (l != null)
-                System.out.println(l);
-
-        System.out.println("\n\nCreating a new product, a compass, and adding it to the array-list of products\n");
-        Product p5 = new Product(5, "Compass", "This is a mathematical compass");
-        allProducts.add(p5);
-
-        LineItem item4 = new LineItem(4, 5, p5);
-
-        System.out.println("\nNow adding a new line-item, for 5 compasses, to end of its array-list...\n");
-        allLineItems.add(item4);
-
-        System.out.println("There are " + allLineItems.size() + " line-items in its array");
-        System.out.println("There are " + allProducts.size() + " products in its array");
-
-        System.out.println("\nDisplaying the state of all products ...\n");
-        for (Product p : allProducts)
-            if (p != null)
-                System.out.println(p);
-
-        System.out.println("\n\nDisplaying the state of all line-items ...\n");
-        for (LineItem l : allLineItems)
-            if (l != null)
-                System.out.println(l);
-
-        System.out.println("\n\nDisplaying the state of all line-items which contain products beginning with 'Pen' ...\n\n");
-        for (LineItem l : allLineItems)
-            if (l != null && l.getProduct().getName().startsWith("Pen"))
-                System.out.println(l);
-
-        System.out.println("\n\nNow changing product of the line-item in the 2nd position of the array-list from a ruler to a black permanent marker...");
-        allLineItems.get(1).setProduct(p4);
-
-        System.out.println("\n\nDisplaying the state of all line-items ...\n");
-        for (LineItem l : allLineItems)
-            if (l != null)
-                System.out.println(l);
-
-        System.out.println("\nNow removing the 2nd product, the pencil, from the array-list of products...\n\n");
-        allProducts.remove(1);
-
-        System.out.println("There are " + allLineItems.size() + " line-items in its array");
-        System.out.println("There are " + allProducts.size() + " products in its array");
-        System.out.println("\nDisplaying the state of all products ...\n");
-        for (Product p : allProducts)
-            if (p != null)
-                System.out.println(p);
-
-        System.out.println("\n\nDisplaying the state of all line-items ...\n");
-        for (LineItem l : allLineItems)
-            if (l != null)
-                System.out.println(l);
+        Product p = new Product(id,name,description);
+        allProducts.add(p);
+        JOptionPane.showMessageDialog(null,"Product created and added to array list.");
 
     }
-    public static void addProduct(ArrayList<Product> allProducts){}
-    public static void amendProduct(ArrayList<Product> allProducts){}
+    public static void amendProduct(ArrayList<Product> allProducts){
+        String input = JOptionPane.showInputDialog("Enter the name of the product you wish to amend");
+
+        String ProductsText = "";
+        String productAmend = "";
+        int AmendProductIndex = 0;
+        if (allProducts.contains(input)){
+            for(int i = 0; i<allProducts.size(); i++){
+                ProductsText += allProducts.get(i)+"\n";
+            }
+        }
+        int amendID = Integer.parseInt(JOptionPane.showInputDialog(null, "The following products matched your search phrase\n\n"+
+                ProductsText+"\n\nEnter the id of the one do you want to amend"));
+
+        for (int i = 0;i<ProductsText.length(); i++){
+            if (allProducts.contains(amendID)){
+                productAmend = String.valueOf(allProducts.get(i));
+            }
+            AmendProductIndex ++;
+        }
+        int choiceAmendAction = Integer.parseInt(JOptionPane.showInputDialog("The details of the product you wish to amend are:\n\n"+
+                productAmend+"\n\n1.Amend Name\n2.Amend Deescription\n3.Cancel Amendment\n\n"+
+                "Please enter your choice"));
+        switch (choiceAmendAction){
+            case 1:
+                //amend name
+
+                for (int i = 0; i<ProductsText.length(); i++){
+                    if (allProducts.indexOf(i) == AmendProductIndex){
+                        String newName = JOptionPane.showInputDialog("Enter the new description for the product");
+                        //переделать!!!!!!!!!!
+                    }
+                }
+            case 2:
+                //amend description
+            case 3:
+                //exit
+        }
+
+    }
     public static void removeProduct(ArrayList<Product> allProducts){}
     public static void viewProducts(ArrayList<Product> allProducts){}
 }

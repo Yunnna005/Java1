@@ -1,9 +1,5 @@
 package labsheet16.exercise2;
 
-//LineItem.java
-/*A simple instantiable class definition for an line-item which also demonstrates
-the OO concept of aggregation*/
-
 public class LineItem {
         private int id;
         private int quantity;
