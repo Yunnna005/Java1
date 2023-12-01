@@ -9,7 +9,7 @@ public class ComputerSystem {
         String text = "";
         ArrayList<Computer> computers = new ArrayList<>();
 
-        Computer c1 = new makeComputer("Dell", "DDR2", 4);
+        Computer c1 = makeComputer("Dell", "DDR2", 4);
 
         Laptop l1 = new Laptop("Toshiba", "DDR4", 8, true);
         Laptop l2 = new Laptop("Microsoft", "DDR2", 6, false);
