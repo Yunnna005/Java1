@@ -1,4 +1,4 @@
-package Winter19_20;
+package Winter19_20_not_finish;
 
 public class Memory {
     private String type;

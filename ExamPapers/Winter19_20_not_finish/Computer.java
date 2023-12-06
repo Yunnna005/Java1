@@ -1,13 +1,14 @@
-package Winter19_20;
+package Winter19_20_not_finish;
 
-public abstract class Computer extends Memory implements Serializable{
-    private int numComputers;
+public class Computer extends Memory implements Serializable{
+    private static int numComputers;
     private String make;
     private Memory memory;
 
     public Computer(String make, String memType, int memSize) {
         super(memType,memSize);
         setMake(make);
+        numComputers++;
     }
 
     public String getMake() {
@@ -18,14 +19,11 @@ public abstract class Computer extends Memory implements Serializable{
         this.make = make;
     }
 
-    public static int getNumComputers(int Computers){
-        return Computers++;
+    public static int getNumComputers() {
+        return numComputers;
     }
     @Override
     public String toString() {
         return "\nMake: "+getMake()+super.toString();
-    }
-    public Computer makeComputer() {
-        return new Computer(getMake(), super.getType(), super.getSize());
     }
 }

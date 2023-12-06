@@ -1,22 +1,13 @@
 package labsheet16.exercise2;
-
-//TestArrayList.java
-/*A driver (test) class that contains the main() method for
-testing the functionality of the LineItem and Product classes but this time
-an array-list is used for maintaining a collection of LineItem objects and
-a separate collection of Product objects. The driver is also testing out
-the functionality of the ArrayList class*/
-
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class TestArrayList{
     public static void main(String[] args) {
 
-        ArrayList<LineItem> allLineItems = new ArrayList<LineItem>();
-
-        // Create Products
+        // Create Produc
         Product p1 = new Product(1, "Red Pen", "This is a red pen");
         Product p2 = new Product(2, "Pencil", "This is a pencil");
         Product p3 = new Product(3, "Ruler", "This is a ruler");
@@ -33,94 +24,191 @@ public class TestArrayList{
         Product p14 = new Product(14, "Blue Marker", "This is a blue permanent marker");
         Product p15 = new Product(15, "Calculator", "This is a Casio scientific calculator");
 
+        //Create an array-list of Product objects
         ArrayList<Product> allProducts = new ArrayList<Product>(Arrays.asList(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15));
-        // Create LineItem objects
 
-        LineItem item1 = new LineItem(1, 3, p1);
-        LineItem item2 = new LineItem(2, 4, p2);
-        LineItem item3 = new LineItem(3, 2, p3);
+        String choice;
 
-        allLineItems.add(item1);
-        allLineItems.add(item2);
-        allLineItems.add(item3);
 
-        int input = Integer.parseInt(JOptionPane.showInputDialog("1.Add a Product\n2.Amend a Product\n3.Remove a Product\n4.View all Products\n5.Quit\n\nPlease enter your choice"));
-        if (!inputValidation(input)){
-            input = Integer.parseInt(JOptionPane.showInputDialog("1.Add a Product\n2.Amend a Product\n3.Remove a Product\n4.View all Products\n5.Quit\n\nPlease enter your choice"));
-        }else{
-            switch (input){
-                case 1:
-                    addProduct(allProducts);
-                case 2:
-                    amendProduct(allProducts);
-                case 3:
-                    removeProduct(allProducts);
-                case 4:
-                    viewProducts(allProducts);
-                case 5:
-                    //exit
+        do{
+            choice = JOptionPane.showInputDialog("1. Add a Product\n2. Amend a Product\n3. Remove a Product" +
+                     "\n4. View all Products\n5. Quit\n\nPlease enter your choice");
+
+            int choiceAsInt = Integer.parseInt(choice);
+
+            while(choiceAsInt<1 || choiceAsInt>5){
+                choice = JOptionPane.showInputDialog("1. Add a Product\n2. Amend a Product\n3. Remove a Product" +
+                        "\n4. View all Products\n5. Quit\n\nInvalid choice entered!! Must be between 1 and 5 inclusive");
+
+                choiceAsInt = Integer.parseInt(choice);
             }
-        }
-    }
 
-    private static boolean inputValidation(int num) {
-        if (num<1||num>5){
-            return false;
-        }else{
-            return true;
-        }
+
+            switch(choice) {
+                case "1":
+                    addProduct(allProducts);
+                    break;
+
+                case "2":
+                    amendProduct(allProducts);
+                    break;
+
+                case "3":
+                    removeProduct(allProducts);
+                    break;
+
+                case "4":
+                    viewProducts(allProducts);
+            }
+
+        }while(!choice.equals("5"));
+
+        JOptionPane.showMessageDialog(null,"Thanks for using the system!",
+                "Farewell",JOptionPane.INFORMATION_MESSAGE);
+
+        System.exit(0);
     }
 
     public static void addProduct(ArrayList<Product> allProducts){
-        int id = Integer.parseInt(JOptionPane.showInputDialog("Enter the product id"));
-        String name = JOptionPane.showInputDialog("Enter the product name");
-        String description = JOptionPane.showInputDialog("Enter the pr. desc.");
+
+        int id = Integer.parseInt(JOptionPane.showInputDialog("Please enter the product id"));
+        String name = JOptionPane.showInputDialog("Please enter the product name");
+        String description = JOptionPane.showInputDialog("Please enter the product description");
 
         Product p = new Product(id,name,description);
+
         allProducts.add(p);
-        JOptionPane.showMessageDialog(null,"Product created and added to array list.");
+        JOptionPane.showMessageDialog(null,"Product now created and added to array list!",
+                "Product Added",JOptionPane.INFORMATION_MESSAGE);
 
     }
+
     public static void amendProduct(ArrayList<Product> allProducts){
-        String input = JOptionPane.showInputDialog("Enter the name of the product you wish to amend");
 
-        String ProductsText = "";
-        String productAmend = "";
-        int AmendProductIndex = 0;
-        if (allProducts.contains(input)){
-            for(int i = 0; i<allProducts.size(); i++){
-                ProductsText += allProducts.get(i)+"\n";
+        ArrayList<Product> foundProducts = new ArrayList<Product>();
+        String searchKey = JOptionPane.showInputDialog("Please enter the name of the product you wish to amend");
+
+        for(Product pr: allProducts)
+            if(pr.getName().toLowerCase().contains(searchKey.toLowerCase()))
+                foundProducts.add(pr);
+
+        String text="";
+
+        for (Product pr : foundProducts)
+            if (pr != null) {
+                text += pr + "\n";
             }
-        }
-        int amendID = Integer.parseInt(JOptionPane.showInputDialog(null, "The following products matched your search phrase\n\n"+
-                ProductsText+"\n\nEnter the id of the one do you want to amend"));
 
-        for (int i = 0;i<ProductsText.length(); i++){
-            if (allProducts.contains(amendID)){
-                productAmend = String.valueOf(allProducts.get(i));
-            }
-            AmendProductIndex ++;
-        }
-        int choiceAmendAction = Integer.parseInt(JOptionPane.showInputDialog("The details of the product you wish to amend are:\n\n"+
-                productAmend+"\n\n1.Amend Name\n2.Amend Deescription\n3.Cancel Amendment\n\n"+
-                "Please enter your choice"));
-        switch (choiceAmendAction){
-            case 1:
-                //amend name
+        int searchID = Integer.parseInt(JOptionPane.showInputDialog("The following products matched your search phrase\n\n" + text +
+                "\n\nEnter the id of the one do you want to amend"));
 
-                for (int i = 0; i<ProductsText.length(); i++){
-                    if (allProducts.indexOf(i) == AmendProductIndex){
-                        String newName = JOptionPane.showInputDialog("Enter the new description for the product");
-                        //переделать!!!!!!!!!!
-                    }
-                }
-            case 2:
-                //amend description
-            case 3:
-                //exit
+        Product productToAmend=null;
+
+        for (Product pr : foundProducts)
+            if (pr != null && pr.getId()==searchID)
+                productToAmend = pr;
+
+        if(productToAmend == null) {
+            JOptionPane.showMessageDialog(null, "Invalid ID entered!",
+                    "Invalid ID", JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
+        String amendChoice = JOptionPane.showInputDialog("The details of the product you wish to amend are:\n\n" +
+                productToAmend + "\n\n1. Amend Name\n2. Amend Description" +
+                "\n3. Cancel Amendment\n\nPlease enter your choice");
+
+        int amendChoiceAsInt = Integer.parseInt(amendChoice);
+
+        while(amendChoiceAsInt<1 || amendChoiceAsInt>3){
+            amendChoice = JOptionPane.showInputDialog("The details of the product you wish to amend are:\n\n" +
+                    productToAmend + "\n\n1. Amend Name\n2. Amend Description" +
+                    "\n3. Cancel Amendment\n\nInvalid choice entered!! Must be a value between 1 and 3 inclusive");
+
+            amendChoiceAsInt = Integer.parseInt(amendChoice);
+        }
+
+        switch(amendChoice){
+            case "1":
+                String newName = JOptionPane.showInputDialog("Please enter the new name for the product");
+
+                productToAmend.setName(newName);
+
+                break;
+
+            case "2":
+                String newDescription = JOptionPane.showInputDialog("Please enter the new description for the product");
+
+                productToAmend.setDescription(newDescription);
+
+                break;
+        }
+        JOptionPane.showMessageDialog(null,"Product details now amended!",
+                "Product Amended",JOptionPane.INFORMATION_MESSAGE);
+        foundProducts.clear();
     }
-    public static void removeProduct(ArrayList<Product> allProducts){}
-    public static void viewProducts(ArrayList<Product> allProducts){}
+
+    public static void removeProduct(ArrayList<Product> allProducts) {
+
+        ArrayList<Product> foundProducts = new ArrayList<Product>();
+        String searchKey = JOptionPane.showInputDialog("Please enter the name of the product you wish to remove");
+
+        for(Product pr: allProducts)
+            if(pr.getName().toLowerCase().contains(searchKey.toLowerCase()))
+                foundProducts.add(pr);
+
+        String text="";
+
+        for (Product pr : foundProducts)
+            if (pr != null) {
+                text += pr + "\n";
+            }
+
+        int searchID = Integer.parseInt(JOptionPane.showInputDialog("The following products matched your search phrase\n\n" + text +
+                "\n\nPlease enter the id of the one you want to remove"));
+
+        Product productToRemove=null;
+
+        for (Product pr : foundProducts)
+            if (pr != null && pr.getId()==searchID)
+                productToRemove = pr;
+
+        if(productToRemove == null) {
+            JOptionPane.showMessageDialog(null, "Invalid ID entered!",
+                    "Invalid ID", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int removeChoice = JOptionPane.showConfirmDialog(null,"The details of the product you wish to amend are:\n\n" +
+                productToRemove + "\n\nAre you sure you wish to remove this product?","Product Removal Confirmation",JOptionPane.YES_NO_CANCEL_OPTION);
+
+        if(removeChoice==JOptionPane.YES_OPTION) {
+            allProducts.remove(productToRemove);
+            JOptionPane.showMessageDialog(null, "Product now removed from array list!",
+                    "Product Removed", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Product removal canceled",
+                    "Product Not Removed", JOptionPane.INFORMATION_MESSAGE);
+
+        foundProducts.clear();
+    }
+
+    public static void viewProducts(ArrayList<Product> allProducts){
+        String allProductData="";
+        Product pr;
+
+        //using an iterator here just for practice (could have easily done without it in this case)
+        Iterator<Product> iterator = allProducts.iterator();
+
+        while(iterator.hasNext()) {
+            pr = iterator.next();
+            if (pr != null)
+                allProductData += pr + "\n";
+        }
+
+        JOptionPane.showMessageDialog(null,allProductData,
+                "List of all Products",JOptionPane.INFORMATION_MESSAGE);
+    }
+
 }
