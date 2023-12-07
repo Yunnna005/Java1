@@ -1,6 +1,7 @@
 package Repeat22_23.finalexam.collegeapp2022;
 
 import java.util.GregorianCalendar;
+import java.util.InvalidPropertiesFormatException;
 
 public class Employee extends InvalidPointOnScaleException{
     private String name;
@@ -13,17 +14,17 @@ public class Employee extends InvalidPointOnScaleException{
     private int pointOnScale;
     private String office;
 
-    public Employee(String message, String name, String address, String mobileNumber, String tNumber, GregorianCalendar dateOfBirth, String workPattern, String role, int pointOnScale, String office) {
+    public Employee(String message, String name, String address, String mobileNumber, String tNumber, GregorianCalendar dateOfBirth, String workPattern, String role, int pointOnScale, String office) throws InvalidPropertiesFormatException {
         super(message);
-        this.name = name;
-        this.address = address;
-        this.mobileNumber = mobileNumber;
-        this.tNumber = tNumber;
-        this.dateOfBirth = dateOfBirth;
-        this.workPattern = workPattern;
-        this.role = role;
-        this.pointOnScale = pointOnScale;
-        this.office = office;
+        setName(name);
+        setAddress(address);
+        setMobileNumber(mobileNumber);
+        settNumber(tNumber);
+        setDateOfBirth(dateOfBirth);
+        setWorkPattern(workPattern);
+        setRole(role);
+        setPointOnScale(pointOnScale);
+        setOffice(office);
     }
 
     public String getName() {
@@ -86,8 +87,13 @@ public class Employee extends InvalidPointOnScaleException{
         return pointOnScale;
     }
 
-    public void setPointOnScale(int pointOnScale) {
-        this.pointOnScale = pointOnScale;
+    public void setPointOnScale(int pointOnScale) throws InvalidPropertiesFormatException {
+        if (pointOnScale >= 1 && pointOnScale <= Payable.PointnsOnScale){
+            this.pointOnScale = pointOnScale;
+        }else{
+            throw new InvalidPropertiesFormatException("Invalid data entered for point on scale!!");
+        }
+
     }
 
     public String getOffice() {
@@ -96,5 +102,10 @@ public class Employee extends InvalidPointOnScaleException{
 
     public void setOffice(String office) {
         this.office = office;
+    }
+
+    @Override
+    public String toString() {
+        return "";
     }
 }
