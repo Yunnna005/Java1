@@ -1,9 +1,9 @@
-package Repeat22_23.finalexam.collegeapp2022;
+package collegeapp2022;
 
+import java.time.format.DateTimeFormatter;
 import java.util.GregorianCalendar;
-import java.util.InvalidPropertiesFormatException;
 
-public class Employee extends InvalidPointOnScaleException{
+public class Employee {
     private String name;
     private String address;
     private String mobileNumber;
@@ -14,17 +14,31 @@ public class Employee extends InvalidPointOnScaleException{
     private int pointOnScale;
     private String office;
 
-    public Employee(String message, String name, String address, String mobileNumber, String tNumber, GregorianCalendar dateOfBirth, String workPattern, String role, int pointOnScale, String office) throws InvalidPropertiesFormatException {
-        super(message);
-        setName(name);
-        setAddress(address);
-        setMobileNumber(mobileNumber);
-        settNumber(tNumber);
-        setDateOfBirth(dateOfBirth);
-        setWorkPattern(workPattern);
-        setRole(role);
-        setPointOnScale(pointOnScale);
-        setOffice(office);
+    public Employee(String name, String address, String mobileNumber, String tNumber, GregorianCalendar dateOfBirth, String workPattern, String role, int pointOnScale, String office) {
+        this.name = name;
+        this.address = address;
+        this.mobileNumber = mobileNumber;
+        this.tNumber = tNumber;
+        this.dateOfBirth = dateOfBirth;
+        this.workPattern = workPattern;
+        this.role = role;
+        this.pointOnScale = pointOnScale;
+        this.office = office;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", mobileNumber='" + mobileNumber + '\'' +
+                ", tNumber='" + tNumber + '\'' +
+                ", dateOfBirth=" + dateOfBirth.toZonedDateTime().toLocalDateTime().format(DateTimeFormatter.BASIC_ISO_DATE) +
+                ", workPatter='" + workPattern + '\'' +
+                ", role='" + role + '\'' +
+                ", pointOnScale=" + pointOnScale +
+                ", office='" + office + '\'' +
+                '}';
     }
 
     public String getName() {
@@ -51,11 +65,11 @@ public class Employee extends InvalidPointOnScaleException{
         this.mobileNumber = mobileNumber;
     }
 
-    public String gettNumber() {
+    public String getTNumber() {
         return tNumber;
     }
 
-    public void settNumber(String tNumber) {
+    public void setTNumber(String tNumber) {
         this.tNumber = tNumber;
     }
 
@@ -87,13 +101,11 @@ public class Employee extends InvalidPointOnScaleException{
         return pointOnScale;
     }
 
-    public void setPointOnScale(int pointOnScale) throws InvalidPropertiesFormatException {
-        if (pointOnScale >= 1 && pointOnScale <= Payable.PointnsOnScale){
-            this.pointOnScale = pointOnScale;
-        }else{
-            throw new InvalidPropertiesFormatException("Invalid data entered for point on scale!!");
+    public void setPointOnScale(int pointOnScale) throws InvalidPointOnScaleException {
+        if (pointOnScale < 1 || pointOnScale > Payable.POINT_ON_SCALE){
+            throw new InvalidPointOnScaleException("");
         }
-
+        this.pointOnScale = pointOnScale;
     }
 
     public String getOffice() {
@@ -102,10 +114,5 @@ public class Employee extends InvalidPointOnScaleException{
 
     public void setOffice(String office) {
         this.office = office;
-    }
-
-    @Override
-    public String toString() {
-        return "";
     }
 }

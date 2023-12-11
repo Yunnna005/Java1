@@ -1,10 +1,10 @@
-package Repeat22_23.finalexam.collegeapp2022;
+package collegeapp2022;
 
-public class InvalidPointOnScaleException {
+public class InvalidPointOnScaleException extends Throwable {
     private String message;
 
     public InvalidPointOnScaleException(String message) {
-        setMessage(message);
+        this.message = message;
     }
 
     public String getMessage() {
